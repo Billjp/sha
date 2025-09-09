@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sendai Highschool Association - SHA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            opacity: 0; /* Initially hide content */
+            transition: opacity 0.5s ease-in-out;
+        }
+        .font-dot {
+            font-family: 'DotGothic16', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Loader styles */
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+        .loader-text {
+            font-family: 'DotGothic16', sans-serif;
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+        }
+        .loader-text span {
+            animation: blink 1.4s infinite;
+        }
+        .loader-text span:nth-child(2) { animation-delay: 0.2s; }
+        .loader-text span:nth-child(3) { animation-delay: 0.4s; }
+        .loader-text span:nth-child(4) { animation-delay: 0.6s; }
+        .loader-text span:nth-child(5) { animation-delay: 0.8s; }
+        .loader-text span:nth-child(6) { animation-delay: 1.0s; }
+        .loader-text span:nth-child(7) { animation-delay: 1.2s; }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        .loader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        /* Scroll reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Slideshow styles */
+        .slideshow-image {
+            transition: opacity 1.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    
+    <!-- ローディング画面 -->
+    <div id="loader">
+        <div class="loader-text">
+            <span>L</span><span>O</span><span>A</span><span>D</span><span>I</span><span>N</span><span>G</span><span>.</span><span>.</span><span>.</span>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header id="header" class="bg-black/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="h-10">
+                <img src="https://assets.st-note.com/production/uploads/images/213895247/profile_611a77ccdb91ceea758c545135b4d1b5.png?fit=bounds&format=jpeg&quality=85&width=330" alt="SHA Logo" class="h-full w-auto rounded-full">
+            </a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#mission" class="text-gray-400 hover:text-white transition-colors duration-300">ミッション</a>
+                <a href="#activities" class="text-gray-400 hover:text-white transition-colors duration-300">活動内容</a>
+                <a href="#contact" class="bg-white text-black px-5 py-2 rounded-full font-bold hover:bg-gray-300 transition-colors duration-300 text-sm">お問い合わせ</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 border-t border-gray-800">
+            <a href="#mission" class="block py-2 text-gray-400 hover:text-white">ミッション</a>
+            <a href="#activities" class="block py-2 text-gray-400 hover:text-white">活動内容</a>
+            <a href="#contact" class="block mt-2 bg-white text-black text-center px-4 py-2 rounded-full hover:bg-gray-300">お問い合わせ</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ヒーローセクション -->
+        <section class="relative h-screen flex items-center justify-center text-white text-center bg-black overflow-hidden">
+             <!-- Slideshow Container -->
+             <div id="hero-slideshow" class="absolute inset-0 z-0">
+                <!-- ここに背景画像を設定します。1枚目をデフォルト表示 -->
+                <img src="https://placehold.co/1920x1080/000000/ffffff?text=Activity+1" alt="Background Image 1" class="slideshow-image absolute inset-0 w-full h-full object-cover opacity-100">
+                <img src="https://placehold.co/1920x1080/111111/ffffff?text=Activity+2" alt="Background Image 2" class="slideshow-image absolute inset-0 w-full h-full object-cover opacity-0">
+                <img src="https://placehold.co/1920x1080/222222/ffffff?text=Activity+3" alt="Background Image 3" class="slideshow-image absolute inset-0 w-full h-full object-cover opacity-0">
+                <img src="https://placehold.co/1920x1080/333333/ffffff?text=Activity+4" alt="Background Image 4" class="slideshow-image absolute inset-0 w-full h-full object-cover opacity-0">
+                <img src="https://placehold.co/1920x1080/444444/ffffff?text=Activity+5" alt="Background Image 5" class="slideshow-image absolute inset-0 w-full h-full object-cover opacity-0">
+            </div>
+             <!-- Overlay -->
+            <div class="absolute inset-0 bg-black/50 z-10"></div>
+            
+            <!-- Text Content -->
+            <div class="relative z-20 px-4">
+                <h1 class="text-4xl md:text-7xl font-dot leading-tight mb-4 tracking-widest">
+                    高校生の「好き」を、<br>社会の力に。
+                </h1>
+                <p class="text-base md:text-lg text-gray-400">Sendai Highschool Associationは、新しい興味関心を見つける手助けをする団体です。</p>
+            </div>
+        </section>
+
+        <!-- ミッション -->
+        <section id="mission" class="py-24 bg-black">
+            <div class="container mx-auto px-6 reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-dot text-white mb-4">OUR MISSION</h2>
+                    <p class="text-gray-500">私たちが目指すこと</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-1 text-left bg-black border border-gray-800 rounded-lg overflow-hidden">
+                    <div class="border-b md:border-b-0 md:border-r border-gray-800 p-8">
+                        <h3 class="text-2xl font-dot mb-3">MISSION</h3>
+                        <p class="leading-relaxed text-gray-400">高校生が興味、関心を形にして活躍できる機会を提供します。</p>
+                    </div>
+                    <div class="border-b md:border-b-0 md:border-r border-gray-800 p-8">
+                        <h3 class="text-2xl font-dot mb-3">VISION</h3>
+                        <p class="leading-relaxed text-gray-400">高校生が自由に活動できる場所を提供、手助けし、幅広い分野のワークショップを行います。</p>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-dot mb-3">VALUE</h3>
+                        <p class="leading-relaxed text-gray-400">自分たちの興味関心、趣味を活かし、次世代への教育に繋げます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 活動内容 (Note連携) -->
+        <section id="activities" class="py-24 bg-white text-black">
+            <div class="container mx-auto px-6 reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-dot text-black mb-4">ACTIVITIES</h2>
+                    <p class="text-gray-500">最新の活動はNoteで発信中！</p>
+                </div>
+                <div class="text-center mt-16">
+                     <a href="https://note.com/sendai_sha/" target="_blank" rel="noopener noreferrer" class="bg-green-600 text-white font-bold py-3 px-10 rounded-full hover:bg-green-700 transition-colors duration-300">
+                        Noteでさらに記事を見る
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 協力団体 -->
+        <section id="partners" class="py-20 bg-white text-black border-t border-b border-gray-200">
+            <div class="container mx-auto px-6 reveal">
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl font-dot text-black mb-2">PARTNERS</h3>
+                </div>
+                <div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-6 md:gap-x-16">
+                    <a href="https://ict-terakoya.org/" target="_blank" rel="noopener noreferrer" class="w-48 h-16 flex justify-center items-center p-2">
+                        <img src="https://ict-terakoya.org/wp-content/uploads/2024/06/logo1@2x.png" alt="ICT寺子屋・ITプロジェクト ロゴ" class="max-h-full max-w-full object-contain transition duration-300 grayscale hover:grayscale-0">
+                    </a>
+                    <a href="https://intilaq.jp/" target="_blank" rel="noopener noreferrer" class="w-48 h-16 flex justify-center items-center p-2">
+                        <img src="https://i1.wp.com/intilaq.jp/wp-content/uploads/2023/05/cover-GmebhkszfcqYvVNaywMFXVCLKFiZQAeO.jpeg?w=890&ssl=1" alt="Intilaq ロゴ" class="max-h-full max-w-full object-contain transition duration-300 grayscale hover:grayscale-0">
+                    </a>
+                    <a href="https://robosava.jp/" target="_blank" rel="noopener noreferrer" class="w-48 h-16 flex justify-center items-center p-2">
+                        <img src="https://robosava.jp/common/images/hd_logo.png" alt="ロボさばロゴ" class="max-h-full max-w-full object-contain transition duration-300 grayscale hover:grayscale-0">
+                    </a>
+                    <a href="https://tohoku-procon.jp/" target="_blank" rel="noopener noreferrer" class="w-48 h-16 flex justify-center items-center p-2">
+                        <img src="https://tohoku-procon.jp/common/images/logo-black.svg" alt="とうほくプロコン" class="max-h-full max-w-full object-contain transition duration-300 grayscale hover:grayscale-0">
+                    </a>
+                    <a href="https://www.enspace.work/" target="_blank" rel="noopener noreferrer" class="w-48 h-16 flex justify-center items-center p-2">
+                        <img src="https://www.enspace.work/CMS/wp-content/uploads/2018/01/ogp-enspace.png" alt="Enspace ロゴ" class="max-h-full max-w-full object-contain transition duration-300 grayscale hover:grayscale-0">
+                    </a>
+                  <a href="https://www.volunteerplace.org/" target="_blank" rel="noopener noreferrer" class="w-48 h-16 flex justify-center items-center p-2">
+                        <img src="https://assets.st-note.com/img/1736438843-MXKDe2fUt3QBn8gzJSdmFW0V.png" alt="ボラプレロゴ" class="max-h-full max-w-full object-contain transition duration-300 grayscale hover:grayscale-0">
+                    </a>
+                     <a href="https://liarise.com/" target="_blank" rel="noopener noreferrer" class="w-48 h-16 flex justify-center items-center p-2">
+                        <img src="https://i.ibb.co/vCZLfTW8/04853437d0c39d80.png" alt="Liariseロゴ" class="max-h-full max-w-full object-contain transition duration-300 grayscale hover:grayscale-0">
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer id="contact" class="bg-black text-white">
+        <div class="container mx-auto px-6 py-16 text-center">
+            <h2 class="text-3xl md:text-4xl font-dot mb-4">CONTACT</h2>
+            <p class="text-gray-400 mb-8 max-w-2xl mx-auto">イベントのご依頼、ご参加、ご支援に関するお問い合わせは、以下のSNSまでご連絡ください。</p>
+            <div class="flex justify-center space-x-8 mb-12">
+                 <!-- Instagram Icon -->
+                <a href="https://www.instagram.com/sendai_sha/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 1024 1024"><path d="M512 306.9c-113.5 0-205.1 91.6-205.1 205.1s91.6 205.1 205.1 205.1 205.1-91.6 205.1-205.1-91.6-205.1-205.1-205.1zm0 337.4c-73 0-132.3-59.3-132.3-132.3s59.3-132.3 132.3-132.3 132.3 59.3 132.3 132.3-59.3 132.3-132.3 132.3zm289.7-293.4c-21.9 0-39.7-17.8-39.7-39.7s17.8-39.7 39.7-39.7 39.7 17.8 39.7 39.7-17.8 39.7-39.7 39.7zM882 142.2c-73.4-73.4-171-114.2-273.8-114.2H415.8c-102.8 0-200.4 40.8-273.8 114.2C68.6 215.6 27.8 313.2 27.8 416v192.2c0 102.8 40.8 200.4 114.2 273.8 73.4 73.4 171 114.2 273.8 114.2h192.2c102.8 0 200.4-40.8 273.8-114.2 73.4-73.4 114.2-171 114.2-273.8V416c0-102.8-40.8-200.4-114.2-273.8zM733.9 801.7c-50 50-116.7 77.8-187.1 77.8H415.8c-70.4 0-137.1-27.8-187.1-77.8-50-50-77.8-116.7-77.8-187.1V416c0-70.4 27.8-137.1 77.8-187.1s116.7-77.8 187.1-77.8h131c70.4 0 137.1 27.8 187.1 77.8s77.8 116.7 77.8 187.1v198.6c-0.1 70.4-27.9 137.1-77.9 187.1z"></path></svg>
+                </a>
+                <!-- Discord Icon -->
+                <a href="https://discord.gg/Hv4ZgJVRgc" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.369a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.353-.426.703-.639 1.047a18.633 18.633 0 00-5.485 0 18.23 18.23 0 00-.64-1.047.074.074 0 00-.078-.037A19.791 19.791 0 003.682 4.37a.074.074 0 00-.036.079C1.94 10.054.945 15.42.164 20.627a.074.074 0 00.043.084c1.83.636 3.633 1.135 5.385 1.514a.074.074 0 00.086-.058c.27-.473.52-1.015.748-1.543a.074.074 0 00-.042-.09c-.432-.21-.84-.44-1.226-.693a.074.074 0 01-.022-.099c.142-.236.282-.476.42-.713a.074.074 0 01.078-.022c.683.26 1.395.493 2.122.689a.074.074 0 00.086-.037c.184-.236.362-.473.532-.703a.074.074 0 00.005-.085c-.09-.059-.18-.118-.27-.177a.074.074 0 01-.052-.09c.042-.075.084-.15.126-.225a.074.074 0 01.086-.022c2.473 1.05 5.22 1.05 7.642 0a.074.074 0 01.086.022c.042.075.084.15.126.225a.074.074 0 01-.052.09c-.09.059-.18.118-.27-.177a.074.074 0 00.005.085c.17.23.348.467.532.703a.074.074 0 00.086.037c.727-.196 1.44-.43 2.122-.689a.074.074 0 01.078.022c.138.237.278.477.42.713a.074.074 0 01-.022.099c-.386.253-.794.482-1.226.693a.074.074 0 00-.042.09c.228.528.478 1.07.748 1.543a.074.074 0 00.086.058c1.752-.38 3.555-.878 5.385-1.514a.074.074 0 00.043-.084c-.78-5.207-1.775-10.573-3.5-16.248a.074.074 0 00-.037-.08zM8.02 15.33c-.83 0-1.503-.647-1.503-1.44s.673-1.44 1.504-1.44c.83 0 1.503.647 1.503 1.44s-.673 1.44-1.503 1.44zm7.957 0c-.83 0-1.503-.647-1.503-1.44s.673-1.44 1.503-1.44c.83 0 1.503.647 1.503 1.44s-.673 1.44-1.503 1.44z"></path></svg>
+                </a>
+            </div>
+            <div class="pt-8 border-t border-gray-800 text-gray-600 text-sm">
+                <p>&copy; 2025 Sendai Highschool Association. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- ローディング画面と初期表示 ---
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            const body = document.querySelector('body');
+            setTimeout(() => {
+                loader.classList.add('loader-hidden');
+                body.style.opacity = 1;
+            }, 1500); // 1.5秒待機
+        });
+
+        // --- ヒーロースライドショー ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const slideshow = document.getElementById('hero-slideshow');
+            if(slideshow) {
+                const images = slideshow.querySelectorAll('.slideshow-image');
+                let currentIndex = 0;
+
+                setInterval(() => {
+                    // 現在の画像をフェードアウト
+                    images[currentIndex].style.opacity = 0;
+
+                    // 次の画像を計算
+                    currentIndex = (currentIndex + 1) % images.length;
+
+                    // 次の画像をフェードイン
+                    images[currentIndex].style.opacity = 1;
+                }, 4000); // 4秒ごとに画像を切り替え
+            }
+        });
+
+
+        // --- モバイルメニューの開閉 ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- スクロールでの要素表示アニメーション ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // 一度表示されたら監視を止める
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+
+    </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
